@@ -1,0 +1,28 @@
+```java
+import java.util.*;
+
+public class HashtagFrequencyCounter {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        Map<String, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            String hashtag = sc.next();
+            map.put(hashtag, map.getOrDefault(hashtag, 0) + 1);
+        }
+
+        List<String> hashtags = new ArrayList<>(map.keySet());
+
+        hashtags.sort((a, b) -> {
+            int freq = map.get(b) - map.get(a);
+            return freq != 0 ? freq : a.compareTo(b);
+        });
+
+        for (String hashtag : hashtags) {
+            System.out.println(hashtag + " " + map.get(hashtag));
+        }
+    }
+}
+```
